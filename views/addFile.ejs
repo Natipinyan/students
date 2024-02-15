@@ -1,0 +1,18 @@
+<%-include("pageTop.ejs")%>
+
+<title>add file</title>
+
+<body>
+
+<main>
+    <center>
+        <h1>add file</h1>
+        <form action="/addFile/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".xlsx" >
+            <button type="submit">העלה קובץ</button>
+    </center>
+
+</main>
+
+<%-include("pageBottom.ejs")%>
+
