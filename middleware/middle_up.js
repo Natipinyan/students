@@ -1,6 +1,7 @@
 const multer = require('multer');
 const path = require("path");
 const xlsx = require("xlsx");
+const excel = require('excel4node');
 const data = {};
 
 // הגדרת המחלקה האחראית על איפוס והגדרת המסלול
@@ -10,32 +11,27 @@ const storage = multer.diskStorage({
     },
 
     filename: function (req, file, cb) {
-        cb(null, file.fieldname + Date + path.extname(file.originalname));
+        const now = new Date(); // קבלת תאריך ושעה נוכחיים
+        const year = now.getFullYear().toString().slice(-2); // קבלת השנה (שני ספרות)
+        const month = ('0' + (now.getMonth() + 1)).slice(-2); // קבלת החודש (שני ספרות)
+        const day = ('0' + now.getDate()).slice(-2); // קבלת היום (שני ספרות)
+        const hours = ('0' + now.getHours()).slice(-2); // קבלת השעה (שני ספרות)
+        const minutes = ('0' + now.getMinutes()).slice(-2); // קבלת הדקות (שני ספרות)
+        const seconds = ('0' + now.getSeconds()).slice(-2); // קבלת השניות (שני ספרות)
+
+        const formattedDateTime = `${year}-${month}-${day}_${hours}_${minutes}_${seconds}`; // יצירת מחרוזת בפורמט המבוקש
+
+        const originalFilename = file.originalname; // שם הקובץ המקורי
+        const extension = path.extname(originalFilename); // קבלת סיומת הקובץ המקורית
+        global.modifiedFilename = `${formattedDateTime}_${originalFilename}`; // יצירת שם חדש לקובץ עם התאריך והשעה בפורמט המבוקש
+
+        cb(null, modifiedFilename); // החזרת שם הקובץ המודרך
     }
+
 });
-
-
 
 const upload = multer({ storage: storage });
 
-function printValue(req,res,next){
-
-    const workbook = xlsx.readFile('filesApp/fileavi.xlsx');
-
-    workbook.SheetNames.forEach(sheetName => {
-        const worksheet = workbook.Sheets[sheetName];
-        data[sheetName] = xlsx.utils.sheet_to_json(worksheet);
-    });
-
-    Object.keys(data).forEach(sheetName => {
-        console.log(`שורה ראשונה מגליון ${sheetName}:`, data[sheetName][1]);
-    });
-
-    next();
-}
-
-
 module.exports = {
-    upload:upload,
-    printValue:printValue
+    upload:upload
 };
