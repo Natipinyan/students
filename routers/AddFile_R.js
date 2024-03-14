@@ -3,8 +3,9 @@ const multer = require("multer");
 const router = express.Router();
 module.exports = router;
 
-const middleup=require("../middleware/middle_up");
-const middlmake=require("../middleware/middle_makeXl");
+global.middleup=require("../middleware/middle_up");
+global.middlmake=require("../middleware/middle_makeXl");
+global.middldata=require("../middleware/middle_datsMid");
 
 
 
@@ -15,6 +16,5 @@ router.get("/",(req, res) => {
 router.post('/upload', [middleup.upload.single('file'),middlmake.makeFile], (req, res) => {
     res.send('הקובץ הועלה בהצלחה!');
 });
-
 
 
