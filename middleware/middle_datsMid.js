@@ -13,7 +13,6 @@ function writeToFile(req,res,next){
     });
 }
 
-
 module.exports = {
     writeToFile:writeToFile
 };
