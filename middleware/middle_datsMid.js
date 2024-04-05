@@ -5,6 +5,7 @@ function writeToFile(req,res,next){
     CreatingColumnNames();
     dataExpXl(dataExport);
     AddData(dataExport);
+
 }
 
 async function AddData(dataExport,res){
