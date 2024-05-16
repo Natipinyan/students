@@ -6,8 +6,7 @@ module.exports = router;
 global.middleup=require("../middleware/middle_up");
 global.middlmake=require("../middleware/middle_makeXl");
 global.middldata=require("../middleware/middle_datsMid");
-
-
+global.middleDataCalc=require("../middleware/middle_dataCalc");
 
 router.get("/",(req, res) => {
     res.render("addFile", {pageTitle:"login page"});

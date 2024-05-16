@@ -20,18 +20,25 @@ function makeFile(req,res,next){
         'maslulKineret',
         'maslulBagrut',
         'maslulDipTeck',
-        'gradeTeck',
+        'gradeBagrut',
+        'gradeDipTeck',
         'compUnits',
         'gradeComp',
         'engUnits',
         'gradeEng',
         'hebUnits',
         'gradeHeb',
+        'MahtUnits',
+        'gradeMaht',
         'fiveFisic',
         'gradeFisic',
         'paamey',
         'friends',
-   ]; // עבור שם, גיל ותעודת זהות
+        'paameyMatch',
+        'pammeyMechina',
+        'kita',
+        'grup',
+   ];
 
 // קרוא את הנתונים מהגליון ובנה את האובייקט
     const data = xlsx.utils.sheet_to_json(sheet, { header: 1 });

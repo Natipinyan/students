@@ -13,18 +13,14 @@ const path = require("path");
 const {json} = require("express");
 app.use(express.static(path.join(__dirname)));
 
-const port = 7070;
+const port = 8080;
 
 app.set("view engine","ejs");
-
-
 
 
 app.listen(port,() =>{
     console.log(`now listening to port http://localhost:${port}/addFile`)
 })
-
-
 
 const addFile_rtr =require('./routers/AddFile_R');
 app.use('/addFile',addFile_rtr);
