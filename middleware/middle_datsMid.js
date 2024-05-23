@@ -3,7 +3,7 @@ function writeToFile(req,res,next){
     let dataExport = [];
 
     importData(dataExport);
-    middleDataCalc.dataCalc(dataExport);
+    middleDataCalcRoute.dataCalcRoute(dataExport);
     CreatingColumnNames();
     dataExpXl(dataExport);
     AddData(dataExport);
@@ -13,7 +13,7 @@ async function AddData(dataExport,res){
     let Query = "INSERT into students_info ";
 
     Query+="(name,phoneNumber,tz,mail,address,gender,maslulKineret,maslulBagrut,maslulDipTeck,gradeBagrut," +
-        "gradeDipTeck,compUnits,gradeComp,engUnits,gradeEng,hebUnits,gradeHeb,MahtUnits,gradeMaht,fiveFisic,gradeFisic,paamey,friends,paameyMatch,pammeyMechina,kita,grup)";
+        "gradeDipTeck,compUnits,gradeComp,engUnits,gradeEng,hebUnits,gradeHeb,MahtUnits,gradeMaht,fiveFisic,gradeFisic,paamey,friends,endRoute,paameyMatch,pammeyMechina,kita,grup)";
     Query+= " VALUES ";
 
     for(let i = 0 ; i<dataExport.length; i++){
@@ -26,8 +26,8 @@ async function AddData(dataExport,res){
         let maslulKineret=   dataExport[i].maslulKineret;
         let maslulBagrut =   dataExport[i].maslulBagrut;
         let maslulDipTeck =  dataExport[i].maslulDipTeck;
-        let gradeBagrut =      dataExport[i].gradeBagrut;
-        let gradeDipTeck =      dataExport[i].gradeDipTeck;
+        let gradeBagrut =    dataExport[i].gradeBagrut;
+        let gradeDipTeck =   dataExport[i].gradeDipTeck;
         let compUnits =      dataExport[i].compUnits;
         let gradeComp =      dataExport[i].gradeComp;
         let engUnits =       dataExport[i].engUnits;
@@ -40,6 +40,7 @@ async function AddData(dataExport,res){
         let gradeFisic =     dataExport[i].gradeFisic;
         let paamey =         dataExport[i].paamey;
         let friends =        dataExport[i].friends;
+        let endRoute =        dataExport[i].endRoute;
         let paameyMatch=     dataExport[i].paameyMatch;
         let pammeyMechina=   dataExport[i].pammeyMechina;
         let kita =    dataExport[i].kita;
@@ -47,7 +48,7 @@ async function AddData(dataExport,res){
 
         Query+=`('${name}','${phoneNumber}','${id}','${mail}','${address}','${gender}','${maslulKineret}','${maslulBagrut}','${maslulDipTeck}','${gradeBagrut}',
     '${gradeDipTeck}','${compUnits}','${gradeComp}','${engUnits}','${gradeEng}','${hebUnits}','${gradeHeb}','${MahtUnits}','${gradeMaht}','${fiveFisic}','${gradeFisic}','${paamey}','${friends}',
-    '${paameyMatch}','${pammeyMechina}','${kita}','${grup}'),`;
+    '${endRoute}','${paameyMatch}','${pammeyMechina}','${kita}','${grup}'),`;
     }
 
     Query = Query.slice(0,-1);
@@ -62,7 +63,6 @@ async function AddData(dataExport,res){
         }
     });
 }
-
 
 
 function importData(dataExport){
@@ -91,8 +91,9 @@ function importData(dataExport){
             gradeFisic:objects[i].gradeFisic,
             paamey:objects[i].paamey,
             friends:objects[i].friends,
-            paameyMatch:"",
-            pammeyMechina:"",
+            endRoute:"jjjjjjjjj",
+            paameyMatch: 0,
+            pammeyMechina:0,
             kita:"",
             grup:"",
         });
@@ -122,6 +123,7 @@ function CreatingColumnNames(){
     worksheet.cell(1, 21).string('ציון מוערך');
     worksheet.cell(1, 22).string('האם את מעוניין בפעמי כנרת (בין  י"ג ל י"ד, יידרש ציון  פסיכומטרי  מינימום 590 )');
     worksheet.cell(1, 23).string('חברים שחשוב לך להיות איתם בכיתה (בתנאי שאתם מאותו המסלול ) במידה ואין יש להשאיר ריק ');
+    worksheet.cell(1, 23).string('מסלול לימודים סופי ');
     worksheet.cell(1, 24).string('האם מתאים לפעמי כנרת ');
     worksheet.cell(1, 25).string('האם צריך מכינה ');
     worksheet.cell(1, 26).string('כיתת שיבוץ');
@@ -153,8 +155,9 @@ function dataExpXl(dataExport){
         worksheet.cell(index +2, 21).number(item.gradeFisic);
         worksheet.cell(index +2, 22).string(item.paamey);
         worksheet.cell(index +2, 23).string(item.friends);
-        worksheet.cell(index +2, 24).string(item.paameyMatch);
-        worksheet.cell(index +2, 25).string(item.pammeyMechina);
+        worksheet.cell(index +2, 23).string(item.endRoute);
+        worksheet.cell(index + 2, 24).string(item.paameyMatch === 1 ? "כן" : "לא");
+        worksheet.cell(index + 2, 25).string(item.pammeyMechina === 1 ? "כן" : "לא");
         worksheet.cell(index +2, 26).string(item.kita);
         worksheet.cell(index +2, 27).string(item.grup);
     });

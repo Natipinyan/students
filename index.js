@@ -13,7 +13,7 @@ const path = require("path");
 const {json} = require("express");
 app.use(express.static(path.join(__dirname)));
 
-const port = 8080;
+const port = 6060;
 
 app.set("view engine","ejs");
 
