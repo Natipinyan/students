@@ -1,9 +1,9 @@
 function  dataCalcRoute(dataExport){
     for(let i = 0;i<dataExport.length;i++){
         if(dataExport[i].maslulKineret === "מרום") {
-            if (CheckMaromPaamey(dataExport, i)) {
+           if (CheckMaromPaamey(dataExport, i)) {
                 do_marom_paamey(dataExport, i);
-            }else if (CheckMarom) {
+            }else if (CheckMarom(dataExport, i)) {
                 do_marom(dataExport, i);
             }else{
                 dataExport[i].endRoute = "נדחה";
@@ -13,7 +13,7 @@ function  dataCalcRoute(dataExport){
         if(dataExport[i].maslulKineret === "שחק"){
             if (CheckShachakPaamey(dataExport, i)) {
                 do_Shachak_paamey(dataExport, i);
-            }else if (CheckShachak) {
+            }else if (CheckShachak(dataExport, i)) {
                 do_Shachak(dataExport, i);
             }else{
                 dataExport[i].endRoute = "נדחה";
@@ -21,11 +21,11 @@ function  dataCalcRoute(dataExport){
         }
     }
 }
-
+//לשים לב אם מוחקים שורה לעשות מחקת על השורה ולא delete על הערך כי אחרת התוכנה תיתקע.
+// באג של ערכים ריקים אי אפשר להכרניס ערך עי אנחנו לא יודעחם מה הטייפ של האובייקט בתא המסוים הזה
 function  CheckShachakPaamey(dataExport,index){
     if(dataExport[index].paamey === "כן" && dataExport[index].maslulDipTeck === "כן" && dataExport[index].gradeDipTeck > 55){
         if ((dataExport[index].MahtUnits === 5 && dataExport[index].gradeMaht > 70) || (dataExport[index].MahtUnits === 4 && dataExport[index].gradeMaht > 80)) {
-            console.log(index);
             if ((dataExport[index].engUnits === 4 && dataExport[index].gradeEng > 70) || (dataExport[index].engUnits === 5 && dataExport[index].gradeEng > 65)) {
                 return true;
             }
@@ -44,7 +44,7 @@ function CheckShachak(dataExport,index){
     if(dataExport[index].maslulDipTeck === "כן" && dataExport[index].gradeDipTeck > 55){
         if(dataExport[index].MahtUnits >= 3 && dataExport[index].gradeMaht > 55){
             if(dataExport[index].engUnits >= 3 && dataExport[index].gradeEng > 55){
-                if(dataExport[index].hebUnits >= 1 && dataExport[index].gradeHeb > 55)
+                if(dataExport[index].hebUnits === "כן"  && dataExport[index].gradeHeb > 55)
                     return true;
             }
         }
@@ -83,8 +83,9 @@ function CheckMarom(dataExport,index){
     if(dataExport[index].maslulBagrut === "כן"){
         if(dataExport[index].MahtUnits >= 3 && dataExport[index].gradeMaht > 55){
             if(dataExport[index].engUnits >= 3 && dataExport[index].gradeEng > 55){
-                if(dataExport[index].hebUnits >= 1 && dataExport[index].gradeHeb > 55)
-                    return true;
+                if(dataExport[index].hebUnits === "כן" && dataExport[index].gradeHeb > 55){
+                    return  true;
+                }
             }
         }
     }

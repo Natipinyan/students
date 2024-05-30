@@ -3,6 +3,7 @@ function writeToFile(req,res,next){
     let dataExport = [];
 
     importData(dataExport);
+    console.log("bug");
     middleDataCalcRoute.dataCalcRoute(dataExport);
     CreatingColumnNames();
     dataExpXl(dataExport);
@@ -40,7 +41,7 @@ async function AddData(dataExport,res){
         let gradeFisic =     dataExport[i].gradeFisic;
         let paamey =         dataExport[i].paamey;
         let friends =        dataExport[i].friends;
-        let endRoute =        dataExport[i].endRoute;
+        let endRoute =       dataExport[i].endRoute;
         let paameyMatch=     dataExport[i].paameyMatch;
         let pammeyMechina=   dataExport[i].pammeyMechina;
         let kita =    dataExport[i].kita;
@@ -99,6 +100,9 @@ function importData(dataExport){
         });
     }
 }
+
+
+
 function CreatingColumnNames(){
     worksheet.cell (1, 1).string('שם');
     worksheet.cell (1, 2).string("מספר טלפון");
@@ -156,8 +160,8 @@ function dataExpXl(dataExport){
         worksheet.cell(index +2, 22).string(item.paamey);
         worksheet.cell(index +2, 23).string(item.friends);
         worksheet.cell(index +2, 23).string(item.endRoute);
-        worksheet.cell(index + 2, 24).string(item.paameyMatch === 1 ? "כן" : "לא");
-        worksheet.cell(index + 2, 25).string(item.pammeyMechina === 1 ? "כן" : "לא");
+        worksheet.cell(index +2, 24).string(item.paameyMatch === 1 ? "כן" : "לא");
+        worksheet.cell(index +2, 25).string(item.pammeyMechina === 1 ? "כן" : "לא");
         worksheet.cell(index +2, 26).string(item.kita);
         worksheet.cell(index +2, 27).string(item.grup);
     });
