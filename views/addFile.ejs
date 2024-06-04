@@ -1,18 +1,23 @@
 <%-include("pageTop.ejs")%>
 
-<title>add file</title>
+<title>העלאת קבצים</title>
 
 <body>
-
+<header></header>
 <main>
-    <center>
-        <h1>add file</h1>
-        <form action="/addFile/upload" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" accept=".xlsx" >
-            <button type="submit">העלה קובץ</button>
-    </center>
-
+        <h1>העלאת קבצים</h1>
+    <form id="upload-form" action="/addFile/upload" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+        <div class="upload-container" id="upload-container" ondragover="dragOver(event)" onclick="inputClick()">
+            <input type="file" name="file" id="file-input" accept=".xlsx">
+            <div class="upload-icon">
+                <img src="/images/excel-icon.png" alt="Excel Icon" />
+            </div>
+            <div class="upload-text" id="upload-text">גרור ושחרר את הקובץ כאן או לחץ לבחירה</div>
+        </div>
+        <button type="submit">העלה קובץ</button>
+    </form>
 </main>
+<script src="/js/scriptAddPage.js"></script>
 
 <%-include("pageBottom.ejs")%>
 
