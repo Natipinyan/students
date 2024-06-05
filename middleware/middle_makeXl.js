@@ -1,9 +1,11 @@
 const xlsx = require("xlsx");
 const excel = require("excel4node");
+const path = require('path');
+
 
 function makeFile(req,res,next){
 
-    const workbook = xlsx.readFile(`filesApp/${modifiedFilename}`);
+    const workbook = xlsx.readFile(`filesAppBC/${modifiedFilename}`);
 
 // בחר את הגליון הרלוונטי מהקובץ
     const sheetName = workbook.SheetNames[0];
@@ -54,8 +56,21 @@ function makeFile(req,res,next){
     const workbookout = new excel.Workbook();
     global.worksheet = workbookout.addWorksheet('נתונים');
 
+    const  now = new Date();
+    const formattedDateTime = now.toLocaleString('he-IL', {
+        year: '2-digit',
+        month: '2-digit',
+        day: '2-digit',
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    }).replace(/[\/\s:]/g, '-').replace('-', '_').replace(':', '_').replace(',', '');
 
-    workbookout.write('נתונים.xlsx', (err, stats) => {
+    const FileName = 'data_' + formattedDateTime + '.xlsx';
+    const directoryPath = path.join(__dirname, '..', 'filesApp');
+
+    workbookout.write(path.join(directoryPath, FileName), (err, stats) => {
         if (err) {
             console.error(err);
         }

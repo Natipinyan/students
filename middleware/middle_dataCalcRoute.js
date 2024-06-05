@@ -21,13 +21,16 @@ function  dataCalcRoute(dataExport){
         }
     }
 }
+//מרום עובד
+//מרום פעמי כנרת עובד
 //לשים לב אם מוחקים שורה לעשות מחקת על השורה ולא delete על הערך כי אחרת התוכנה תיתקע.
-// באג של ערכים ריקים אי אפשר להכרניס ערך עי אנחנו לא יודעחם מה הטייפ של האובייקט בתא המסוים הזה
 function  CheckShachakPaamey(dataExport,index){
     if(dataExport[index].paamey === "כן" && dataExport[index].maslulDipTeck === "כן" && dataExport[index].gradeDipTeck > 55){
         if ((dataExport[index].MahtUnits === 5 && dataExport[index].gradeMaht > 70) || (dataExport[index].MahtUnits === 4 && dataExport[index].gradeMaht > 80)) {
             if ((dataExport[index].engUnits === 4 && dataExport[index].gradeEng > 70) || (dataExport[index].engUnits === 5 && dataExport[index].gradeEng > 65)) {
-                return true;
+                if (dataExport[index].hebUnits === "כן" && dataExport[index].gradeHeb > 55){
+                    return true;
+                }
             }
         }
     }
@@ -54,11 +57,13 @@ function CheckShachak(dataExport,index){
 function do_Shachak(dataExport,index){
     dataExport[index].endRoute = "שחק";}
 function  CheckMaromPaamey(dataExport,index){
-    if(dataExport[index].paamey === "כן" && dataExport[index].gradeBagrut > 70) {
-        if (dataExport[index].maslulBagrut === "כן") {
+    if(dataExport[index].paamey === "כן") {
+        if (dataExport[index].maslulBagrut === "כן" && dataExport[index].gradeBagrut > 70 ) {
             if ((dataExport[index].MahtUnits === 5 && dataExport[index].gradeMaht > 70) || (dataExport[index].MahtUnits === 4 && dataExport[index].gradeMaht > 80)) {
                 if ((dataExport[index].engUnits === 4 && dataExport[index].gradeEng > 70) || (dataExport[index].engUnits === 5 && dataExport[index].gradeEng > 65)) {
-                    return true;
+                    if (dataExport[index].hebUnits === "כן" && dataExport[index].gradeHeb > 55){
+                        return true;
+                    }
                 }
             }
         }
@@ -101,7 +106,6 @@ function CyberOrEleckMarom(dataExport,index){
         dataExport[index].endRoute = "מרום אלקטרוניקה";
     }
 }
-
 module.exports = {
     dataCalcRoute:dataCalcRoute
 };

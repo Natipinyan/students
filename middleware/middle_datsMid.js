@@ -3,7 +3,6 @@ function writeToFile(req,res,next){
     let dataExport = [];
 
     importData(dataExport);
-    console.log("bug");
     middleDataCalcRoute.dataCalcRoute(dataExport);
     CreatingColumnNames();
     dataExpXl(dataExport);
@@ -92,7 +91,7 @@ function importData(dataExport){
             gradeFisic:objects[i].gradeFisic,
             paamey:objects[i].paamey,
             friends:objects[i].friends,
-            endRoute:"jjjjjjjjj",
+            endRoute:" ",
             paameyMatch: 0,
             pammeyMechina:0,
             kita:"",
@@ -137,26 +136,26 @@ function CreatingColumnNames(){
 function dataExpXl(dataExport){
     dataExport.forEach((item, index) => {
         worksheet.cell(index +2,  1).string(item.name);
-        worksheet.cell(index +2,  2).number(item.phoneNumber);
-        worksheet.cell(index +2,  3).number(item.id);
+        worksheet.cell(index +2,  2).string(item.phoneNumber);
+        worksheet.cell(index +2,  3).string(item.id);
         worksheet.cell(index +2,  4).string(item.mail);
         worksheet.cell(index +2,  5).string(item.address);
         worksheet.cell(index +2,  6).string(item.gender);
         worksheet.cell(index +2,  7).string(item.maslulKineret);
         worksheet.cell(index +2,  8).string(item.maslulBagrut);
         worksheet.cell(index +2,  9).string(item.maslulDipTeck);
-        worksheet.cell(index +2, 10).number(item.gradeBagrut);
-        worksheet.cell(index +2, 11).number(item.gradeDipTeck);
-        worksheet.cell(index +2, 12).number(item.compUnits);
-        worksheet.cell(index +2, 13).number(item.gradeComp);
-        worksheet.cell(index +2, 14).number(item.engUnits);
-        worksheet.cell(index +2, 15).number(item.gradeEng);
+        worksheet.cell(index +2, 10).string(item.gradeBagrut);
+        worksheet.cell(index +2, 11).string(item.gradeDipTeck);
+        worksheet.cell(index +2, 12).string(item.compUnits);
+        worksheet.cell(index +2, 13).string(item.gradeComp);
+        worksheet.cell(index +2, 14).string(item.engUnits);
+        worksheet.cell(index +2, 15).string(item.gradeEng);
         worksheet.cell(index +2, 16).string(item.hebUnits);
-        worksheet.cell(index +2, 17).number(item.gradeHeb);
-        worksheet.cell(index +2, 18).number(item.MahtUnits);
-        worksheet.cell(index +2, 19).number(item.gradeMaht);
+        worksheet.cell(index +2, 17).string(item.gradeHeb);
+        worksheet.cell(index +2, 18).string(item.MahtUnits);
+        worksheet.cell(index +2, 19).string(item.gradeMaht);
         worksheet.cell(index +2, 20).string(item.fiveFisic);
-        worksheet.cell(index +2, 21).number(item.gradeFisic);
+        worksheet.cell(index +2, 21).string(item.gradeFisic);
         worksheet.cell(index +2, 22).string(item.paamey);
         worksheet.cell(index +2, 23).string(item.friends);
         worksheet.cell(index +2, 23).string(item.endRoute);
