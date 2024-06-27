@@ -8,6 +8,7 @@ global.middlmake=require("../middleware/middle_makeXl");
 global.middldata=require("../middleware/middle_datsMid");
 global.middleDataCalcRoute=require("../middleware/middle_dataCalcRoute");
 global.middleDataCalcClass = require("../middleware/middle_dataCalcClass")
+global.middleDataCalcGroup = require ("../middleware/middle_dataCCalcGroup");
 
 router.get("/",(req, res) => {
     res.render("addFile", {pageTitle:"login page"});

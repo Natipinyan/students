@@ -3,6 +3,7 @@ function writeToFile(req,res,next){
     importData(dataExport);
     middleDataCalcRoute.dataCalcRoute(dataExport);
     middleDataCalcClass.calcDataClass(dataExport);
+    middleDataCalcGroup.calcGroup(dataExport);
     CreatingColumnNames();
     emptyVal(dataExport);
     dataExpXl(dataExport);

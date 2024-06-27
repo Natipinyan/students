@@ -1,4 +1,4 @@
-let maxClassSize = 2;
+let maxClassSize = 20;
 
 global.classArry = [0,0,0,0,0,0,0,0,0,0];
 function calcDataClass(dataExport){
@@ -21,7 +21,7 @@ function calcDataClass(dataExport){
         }
     }
 }
-
+//לסדר כמויות שאם זה יותר גבוה ממקסימום כיתה להציג הודעת שגיאה
 function classShahak(dataExport,index){
     if( dataExport[index].endRoute ===   "שחק מכטרוניקה פעמי כנרת" ||
         dataExport[index].endRoute ===   "שחק מכטרוניקה" ){
@@ -80,6 +80,8 @@ function classMarom(dataExport,index){
         }
     }
 }
+
+
 
 module.exports = {
     calcDataClass:calcDataClass
