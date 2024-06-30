@@ -51,7 +51,7 @@ async function AddData(dataExport,res){
         '${endRoute}','${paameyMatch}','${pammeyMechina}','${kita}','${grup}'),`;
     }
     Query = Query.slice(0,-1);
-    console.log("adding user",Query);
+    //console.log("adding user",Query);
     db_pool.query(Query, function (err, rows, fields) {
         if (err) {
             console.log("err");
