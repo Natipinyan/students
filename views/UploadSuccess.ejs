@@ -1,0 +1,22 @@
+<%-include("pageTop.ejs")%>
+
+<title>הצגת נתונים</title>
+<body>
+
+<main>
+
+    <h1>הקובץ הועלה בהצלחה</h1>
+    <button id="myButton" >להורדת הקבצים לאחר עיבוד</button>
+    <button id="myButtonBC" >להורדת הקבצים לפני עיבוד</button>
+    <script>
+        document.getElementById('myButton').addEventListener('click', function() {
+            window.location.href = 'http://localhost:6060/DownloadFiles/filesAppList';
+        });
+        document.getElementById('myButtonBC').addEventListener('click', function() {
+            window.location.href = 'http://localhost:6060/DownloadFiles/filesAppListBC';
+        });
+    </script>
+
+</main>
+
+<%-include("pageBottom.ejs")%>

@@ -1,5 +1,5 @@
 function writeToFile(req,res,next){
-    let dataExport = [];
+    global.dataExport = [];
     importData(dataExport);
     middleDataCalcRoute.dataCalcRoute(dataExport);
     middleDataCalcClass.calcDataClass(dataExport);
@@ -185,5 +185,5 @@ function emptyVal(dataExport) {
 }
 
 module.exports = {
-    writeToFile:writeToFile
+    writeToFile:writeToFile,
 };
