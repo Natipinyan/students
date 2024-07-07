@@ -1,0 +1,33 @@
+
+.file-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+    gap: 10px;
+    padding: 10px;
+}
+
+.files {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.files a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.files a:hover {
+    text-decoration: underline;
+}
+
+.excel-icon {
+    width: 24px;
+    height: 24px;
+}
+

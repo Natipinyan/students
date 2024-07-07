@@ -1,22 +1,13 @@
 <%-include("pageTop.ejs")%>
 
-<title>הצגת נתונים</title>
-<body>
-
 <main>
 
     <h1>הקובץ הועלה בהצלחה</h1>
-    <button id="myButton" >להורדת הקבצים לאחר עיבוד</button>
-    <button id="myButtonBC" >להורדת הקבצים לפני עיבוד</button>
-    <script>
-        document.getElementById('myButton').addEventListener('click', function() {
-            window.location.href = 'http://localhost:6060/DownloadFiles/filesAppList';
-        });
-        document.getElementById('myButtonBC').addEventListener('click', function() {
-            window.location.href = 'http://localhost:6060/DownloadFiles/filesAppListBC';
-        });
-    </script>
-
+    <div class="button-container">
+    <a class="button" id="myButton" href="/DownloadFiles/filesAppList" >קבצים לאחר עיבוד</a>
+    <a class="button" id="toUploadPage" href="/addFile" >העלאת קבצים</a>
+    <a class="button" id="myButtonBC" href="/DownloadFiles/filesAppListBC" >קבצים שהועלו</a>
+    </div>
 </main>
 
 <%-include("pageBottom.ejs")%>

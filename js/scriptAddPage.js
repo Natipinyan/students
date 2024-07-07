@@ -7,7 +7,6 @@ function inputClick() {
 }
 
 function dragOver(event) {
-    console.log(event);
     event.preventDefault();
     uploadContainer.classList.add('dragover');
 }
@@ -19,12 +18,23 @@ function handleDragLeave() {
 function handleDrop(event) {
     event.preventDefault();
     uploadContainer.classList.remove('dragover');
-    fileInput.files = event.dataTransfer.files;
-    updateUploadText();
+    const files = event.dataTransfer.files;
+    if (validateFileType(files[0])) {
+        fileInput.files = files;
+        updateUploadText();
+    } else {
+        alert('נא לבחור קובץ אקסל בלבד.');
+    }
 }
 
 function handleFileChange() {
-    updateUploadText();
+    if (fileInput.files.length > 0 && !validateFileType(fileInput.files[0])) {
+        alert('נא לבחור קובץ אקסל בלבד.');
+        fileInput.value = ''; // Reset the input
+        updateUploadText();
+    } else {
+        updateUploadText();
+    }
 }
 
 function updateUploadText() {
@@ -42,9 +52,22 @@ function validateForm() {
         alert('נא לבחור קובץ להעלאה.');
         return false;
     }
+    if (!validateFileType(fileInput.files[0])) {
+        alert('נא לבחור קובץ אקסל בלבד.');
+        return false;
+    }
     return true;
+}
+
+function validateFileType(file) {
+    const allowedTypes = [
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // .xlsx
+        'application/vnd.ms-excel' // .xls
+    ];
+    return file && allowedTypes.includes(file.type);
 }
 
 uploadContainer.addEventListener('dragleave', handleDragLeave);
 uploadContainer.addEventListener('drop', handleDrop);
+uploadContainer.addEventListener('dragover', dragOver);
 fileInput.addEventListener('change', handleFileChange);

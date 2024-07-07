@@ -1,4 +1,4 @@
 exports.HOST ="localhost";
 exports.USER ="root";
 exports.PASSWORD ="";
-exports.DATABASE ="students kineret";
+exports.DATABASE ="students_kinneret";

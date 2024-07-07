@@ -1,40 +1,18 @@
 <%-include("pageTop.ejs")%>
-<title>רשימת קבצים לאחר עיבוד</title>
-<body>
-<h1>רשימת קבצים שהועלו לאתר לצורך חלוקה למסלולים וכיתות</h1>
-<ul id="file-list">
-    <% files.forEach(file => { %>
-        <li>
-            <a href="/DownloadFiles/filesAppBC/<%= file %>" download="<%= file %>"><%= file %></a>
-        </li>
-    <% }); %>
-</ul>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        fetch('/DownloadFiles/filesAppListBC')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.json();
-            })
-            .then(files => {
-                console.log('Files fetched:', files);
-                const fileList = document.getElementById('file-list');
-                files.forEach(file => {
-                    const listItem = document.createElement('li');
-                    const link = document.createElement('a');
-                    link.href = `/DownloadFiles/filesAppBC/${file}`;
-                    link.textContent = file;
-                    link.download = file;
-                    listItem.appendChild(link);
-                    fileList.appendChild(listItem);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching files:', error);
-            });
-    });
-</script>
+<main>
+    <h1>קבצים שהועלו לצורך חלוקה למסלולים וכיתות</h1>
+    <div class="button-container">
+        <a class="button" id="myButton" href="/DownloadFiles/filesAppList" >קבצים לאחר העיבוד</a>
+        <a class="button" id="toUploadPage" href="/addFile" >העלאת קבצים</a>
+    </div>
+    <div class="file-container">
+        <% files.forEach(file => { %>
+            <div class="files">
+                <img src="/images/excel-icon.png" alt="Excel Icon" class="excel-icon">
+                <a href="/DownloadFiles/filesAppBC/<%= file %>" download="<%= file %>"><%= file %></a>
+            </div>
+            <% }); %>
+    </div>
+</main>
+<script src="/js/filesAppListBCScript.js"></script>
 <%-include("pageBottom.ejs")%>
