@@ -5,7 +5,6 @@ const USER     =params.USER     ;
 const PASSWORD =params.PASSWORD ;
 const DATABASE =params.DATABASE ;
 
-
 let pool = mysql.createPool({
     host:		HOST		,
     user:		USER		,

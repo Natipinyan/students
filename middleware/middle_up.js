@@ -4,7 +4,6 @@ const xlsx = require("xlsx");
 const excel = require('excel4node');
 const data = {};
 
-// הגדרת המחלקה האחראית על איפוס והגדרת המסלול
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'filesAppBC/');
@@ -23,9 +22,9 @@ const storage = multer.diskStorage({
         }).replace(/[\/\s:]/g, '-').replace('-', '_').replace(':', '_').replace(',', '');
 
         const FileName = 'dataBC_' + formattedDateTime + '.xlsx';
-        global.modifiedFilename = `${FileName}`; // יצירת שם חדש לקובץ עם התאריך והשעה בפורמט המבוקש
+        global.modifiedFilename = `${FileName}`;
 
-        cb(null, modifiedFilename); // החזרת שם הקובץ המודרך
+        cb(null, modifiedFilename);
     }
 
 });

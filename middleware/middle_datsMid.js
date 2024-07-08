@@ -9,6 +9,7 @@ function writeToFile(req,res,next){
     dataExpXl(dataExport);
     AddData(dataExport);
 }
+
 async function AddData(dataExport,res){
     let Query = "INSERT into students_info ";
     Query+="(name,phoneNumber,tz,mail,address,gender,maslulKineret,maslulBagrut,maslulDipTeck,gradeBagrut," +
@@ -60,6 +61,7 @@ async function AddData(dataExport,res){
         }
     });
 }
+
 function importData(dataExport){
     for (let i = 1; i < objects.length; i++) {
         dataExport.push({
@@ -94,6 +96,7 @@ function importData(dataExport){
         });
     }
 }
+
 function CreatingColumnNames(){
     worksheet.cell (1, 1).string('שם');
     worksheet.cell (1, 2).string("מספר טלפון");
@@ -124,6 +127,7 @@ function CreatingColumnNames(){
     worksheet.cell(1, 26).string('כיתת שיבוץ');
     worksheet.cell(1, 27).string('תת קבוצה');
 }
+
 function dataExpXl(dataExport){
     dataExport.forEach((item, index) => {
         worksheet.cell(index +2,  1).string(item.name);
@@ -156,6 +160,7 @@ function dataExpXl(dataExport){
         worksheet.cell(index +2, 27).string(item.grup);
     });
 }
+
 function emptyVal(dataExport) {
     for (let obj of dataExport){
         if (!obj.name || obj.name === ' ') {obj.name = ' ';}

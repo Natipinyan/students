@@ -1,5 +1,3 @@
-
-
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/DownloadFiles/filesAppListBC')
         .then(response => {

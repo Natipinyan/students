@@ -2,17 +2,21 @@ footer{
     grid-area: footer;
     width: 100%;
 }
+
 footer #txt{
     text-align: center;
     font-size: large;
 }
+
 footer #logo{
     width: 60px;
     height: 40px;
 }
+
 footer i{
     font-weight: bold;
 }
+
 footer #create{
     display: flex;
     justify-content: space-between;

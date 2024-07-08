@@ -23,9 +23,7 @@ function  dataCalcRoute(dataExport){
         }
     }
 }
-
 //לשים לב אם מוחקים שורה לעשות מחקת על השורה ולא delete על הערך כי אחרת התוכנה תיתקע.
-
 function  CheckShachakPaamey(dataExport,index){
     if(dataExport[index].paamey === "כן" && dataExport[index].maslulDipTeck === "כן" && dataExport[index].gradeDipTeck > 55){
         if ((dataExport[index].MahtUnits === 5 && dataExport[index].gradeMaht > 70) || (dataExport[index].MahtUnits === 4 && dataExport[index].gradeMaht > 80)) {
@@ -38,6 +36,7 @@ function  CheckShachakPaamey(dataExport,index){
     }
     return false;
 }
+
 function  do_Shachak_paamey(dataExport,index){
     dataExport[index].paameyMatch = 1;
     if(dataExport[index].maslulKineret ===  "שחק אלקטרוניקה")
@@ -50,6 +49,7 @@ function  do_Shachak_paamey(dataExport,index){
         dataExport[index].pammeyMechina = 1;
     }
 }
+
 function CheckShachak(dataExport,index){
     if(dataExport[index].maslulDipTeck === "כן" && dataExport[index].gradeDipTeck > 55){
         if(dataExport[index].MahtUnits >= 3 && dataExport[index].gradeMaht > 55){
@@ -61,6 +61,7 @@ function CheckShachak(dataExport,index){
     }
     return false;
 }
+
 function do_Shachak(dataExport,index){
     if(dataExport[index].maslulKineret ===  "שחק אלקטרוניקה"){
         dataExport[index].endRoute = "שחק אלקטרוניקה";
@@ -72,6 +73,7 @@ function do_Shachak(dataExport,index){
         dataExport[index].endRoute = "שחק תקשוב";
     }
 }
+
 function  CheckMaromPaamey(dataExport,index){
     if(dataExport[index].paamey === "כן") {
         if (dataExport[index].maslulBagrut === "כן" && dataExport[index].gradeBagrut > 70 ) {
@@ -86,6 +88,7 @@ function  CheckMaromPaamey(dataExport,index){
     }
     return false;
 }
+
 function  do_marom_paamey(dataExport,index){
     dataExport[index].paameyMatch = 1;
     CyberOrEleckMaromPaamey(dataExport,index);
@@ -93,6 +96,7 @@ function  do_marom_paamey(dataExport,index){
         dataExport[index].pammeyMechina = 1;
     }
 }
+
 function CyberOrEleckMaromPaamey(dataExport,index){
     if(dataExport[index].compUnits === 5 && dataExport[index].gradeComp > 55){
         dataExport[index].endRoute = "מרום מיישם סייבר/תקשוב פעמי כנרת";
@@ -100,6 +104,7 @@ function CyberOrEleckMaromPaamey(dataExport,index){
         dataExport[index].endRoute = "מרום אלקטרוניקה פעמי כנרת";
     }
 }
+
 function CheckMarom(dataExport,index){
     if(dataExport[index].maslulBagrut === "כן"){
         if(dataExport[index].MahtUnits >= 3 && dataExport[index].gradeMaht > 55){
@@ -112,9 +117,11 @@ function CheckMarom(dataExport,index){
     }
     return false;
 }
+
 function  do_marom(dataExport,index){
     CyberOrEleckMarom(dataExport,index);
 }
+
 function CyberOrEleckMarom(dataExport,index){
     if(dataExport[index].compUnits === 5 && dataExport[index].gradeComp > 55){
         dataExport[index].endRoute = "מרום מיישם סייבר/תקשוב";

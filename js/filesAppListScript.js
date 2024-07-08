@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     console.log('הדף נטען, טוען קבצים...');
     fetch('/DownloadFiles/filesAppList')
