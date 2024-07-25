@@ -1,4 +1,6 @@
 const fs = require('fs');
+const express = require('express');
+const path = require('path');
 const PROCESSED_FILES_DIR = path.join(__dirname, '../filesApp');
 const PROCESSED_FILES_DIR_BC = path.join(__dirname, '../filesAppBC');
 module.exports = router;
@@ -18,6 +20,22 @@ router.get('/filesAppListBC', (req, res) => {
     });
 });
 
+
+router.delete('/:folder/:filename', (req, res) => {
+    const folder = req.params.folder;
+    const filename = req.params.filename;
+    const filePath = path.join(__dirname, '../', folder, filename);
+
+    console.log(`Attempting to delete file: ${filePath}`);
+
+    fs.unlink(filePath, err => {
+        if (err) {
+            console.error(`Error deleting file: ${err.message}`);
+            return res.status(500).json({ success: false, message: 'Failed to delete file' });
+        }
+        res.json({ success: true, message: 'File deleted' });
+    });
+});
 
 
 
