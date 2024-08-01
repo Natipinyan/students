@@ -20,20 +20,20 @@ router.get('/filesAppListBC', (req, res) => {
     });
 });
 
+router.delete('/delete/:fileName', (req, res) => {
+    const fileName = req.params.fileName;
+    let filePath = path.join(PROCESSED_FILES_DIR, fileName);
 
-router.delete('/:folder/:filename', (req, res) => {
-    const folder = req.params.folder;
-    const filename = req.params.filename;
-    const filePath = path.join(__dirname, '../', folder, filename);
+    if (!path.extname(fileName)) {
+        filePath = path.join(PROCESSED_FILES_DIR, `${fileName}.xlsx`);
+    }
 
-    console.log(`Attempting to delete file: ${filePath}`);
-
-    fs.unlink(filePath, err => {
+    fs.unlink(filePath, (err) => {
         if (err) {
-            console.error(`Error deleting file: ${err.message}`);
-            return res.status(500).json({ success: false, message: 'Failed to delete file' });
+            console.error('Error deleting file:', err);
+            return res.status(500).send('Error deleting file');
         }
-        res.json({ success: true, message: 'File deleted' });
+        res.send('File deleted successfully');
     });
 });
 
