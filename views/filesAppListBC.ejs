@@ -7,11 +7,12 @@
     </div>
     <div class="file-container">
         <% files.forEach(file => { %>
-            <div class="files">
+            <div class="files" data-file="<%= file %>">
                 <img src="/images/excel-icon.png" alt="Excel Icon" class="excel-icon">
-                <a href="/DownloadFiles/filesAppBC/<%= file %>" download="<%= file %>"><%= file %></a>
+                <a href="/DownloadFiles/filesApp/<%= file %>" download="<%= file %>"><%= file %></a>
+                <button class="delete-button" style="display: none;">מחק</button>
             </div>
-            <% }); %>
+        <% }); %>
     </div>
 </main>
 <script src="/js/filesAppListBCScript.js"></script>

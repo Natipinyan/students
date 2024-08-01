@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('הדף נטען, טוען קבצים...');
     fetch('/DownloadFiles/filesAppList')
         .then(response => {
             if (!response.ok) {
@@ -26,11 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.file-container a').forEach(link => {
-        link.addEventListener('contextmenu', (event) => {
+    document.querySelectorAll('.files').forEach(fileContainer => {
+        fileContainer.addEventListener('contextmenu', (event) => {
             event.preventDefault();
 
-            const fileContainer = link.parentNode;
             const deleteButton = fileContainer.querySelector('.delete-button');
             deleteButton.style.display = 'block';
             deleteButton.style.position = 'absolute';
@@ -38,15 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
             deleteButton.style.top = event.clientY + 'px';
 
             deleteButton.addEventListener('click', () => {
-                const fileName = link.textContent;
-                // שליחת בקשת DELETE לשרת
-                fetch(`/DownloadFiles/delete/${fileName}`, { method: 'DELETE' })
+                const fileName = fileContainer.querySelector('a').textContent;
+                fetch(`/DownloadFiles/deleteFilesApp/${fileName}`, { method: 'DELETE' })
                     .then(response => {
                         if (!response.ok) {
                             throw new Error('Network response was not ok ' + response.statusText);
                         }
-                        // הסרת האלמנטים מה-DOM לאחר מחיקה מוצלחת
-                        link.parentNode.remove();
+                        fileContainer.remove();
                         alert('הקובץ נמחק בהצלחה');
                     })
                     .catch(error => {
