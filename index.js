@@ -7,6 +7,10 @@ app.use(express.json());
 global.path = require("path");
 app.use(express.static(path.join(__dirname)));
 
+const { swaggerUi, specs } = require('./swagger/swaggerConfig');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+
+
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
 
