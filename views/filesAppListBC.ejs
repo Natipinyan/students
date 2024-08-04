@@ -5,12 +5,13 @@
         <a class="button" id="myButton" href="/DownloadFiles/filesAppList" >קבצים לאחר העיבוד</a>
         <a class="button" id="toUploadPage" href="/addFile" >העלאת קבצים</a>
     </div>
+    <div id="notification" class="notification" style="display: none;">הקובץ נמחק בהצלחה</div>
     <div class="file-container">
         <% files.forEach(file => { %>
             <div class="files" data-file="<%= file %>">
                 <img src="/images/excel-icon.png" alt="Excel Icon" class="excel-icon">
                 <a href="/DownloadFiles/filesApp/<%= file %>" download="<%= file %>"><%= file %></a>
-                <button class="delete-button" style="display: none;">מחק</button>
+                <button class="delete-button" style="display: none;">מחק קובץ</button>
             </div>
         <% }); %>
     </div>

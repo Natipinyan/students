@@ -43,11 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             throw new Error('Network response was not ok ' + response.statusText);
                         }
                         fileContainer.remove();
-                        alert('הקובץ נמחק בהצלחה');
+                        showNotification('הקובץ נמחק בהצלחה');
                     })
                     .catch(error => {
                         console.error('Error deleting file:', error);
-                        alert('שגיאה במהלך מחיקת הקובץ');
+                        showNotification('שגיאה במהלך מחיקת הקובץ');
                     });
             });
 
@@ -57,3 +57,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+function showNotification(message) {
+    const notification = document.getElementById('notification');
+    notification.textContent = message;
+    notification.style.display = 'block';
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 3000);
+}
+
