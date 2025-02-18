@@ -1,22 +1,26 @@
 Kineret Student Ptoject
 
-This project is designed to process Excel files containing data of students enrolling in preparatory courses at Kinneret College. 
-The system categorizes students into various tracks and classes based on their data, 
-exports a new Excel file with the added categorization information, and updates a database with the processed data.
+# Students Project
+This project is designed for managing student data in an educational context. It includes features for handling student registration, track assignments, and file management.
+This project was created during the Software Engineering studies at Kinneret College, and is designed for use by the secretary to streamline the processes of student registration and distribution into classes.
 
-Features:
-Excel File Processing: Reads and processes Excel files containing student enrollment data.
-Data Categorization: Categorizes students into tracks and classes according to their data.
-Excel Export: Generates a new Excel file with the categorized data.
-Database Integration: Pushes the processed data into a database for further use and analysis.
+## Features
+- **Student Registration:** Allows for the registration of students into different tracks.
+- **File Management:** Manages files related to student projects.
+- **Database Integration:** Stores student data in a MySQL database.
+- **Excel Processing:** Allows importing and exporting student data in Excel format.
 
-Technologies - Backend:
-Node.js: Server-side runtime environment.
-Express.js: Web application framework for Node.js.
-ExcelJS: Library for reading, manipulating, and writing Excel files in Node.js.
-MySQL/MongoDB: Database systems for storing and retrieving student data.
+## Installation
 
-Technologies - Frontend:
-HTML/CSS: Markup and styling of the web pages.
-JavaScript: Client-side scripting.
-EJS (Embedded JavaScript): Templating engine for generating HTML markup with plain JavaScript.
+Clone the repository:
+git clone https://github.com/Natipinyan/students.git cd students
+
+
+## File Structure
+
+- `routers/`: Contains route handlers for managing student data.
+- `views/`: Includes EJS templates for rendering student-related data.
+- `filesApp/`: Directory for managing processed files.
+- `swagger/`: Defines the API documentation.
+- `sql/`: SQL scripts for database setup and management.
+
